@@ -9,7 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
-class SignUp extends Component {
+class LogIn extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -63,4 +63,4 @@ class SignUp extends Component {
 		</Grid>
 	)};
 }
-export default SignUp;
+export default LogIn;

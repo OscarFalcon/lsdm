@@ -1,12 +1,14 @@
-import Login from '../components/Login'
+import LogIn from '../components/LogIn'
 
-const onSignUpClicked = () => {};
+const onLogIn = function(SignUpArgs){
+	//const { firstName, lastName, email, password, confirmpassword } = data;
+	console.log("posting sign in...");
+}
 
-
-const LoginContainer = () => {
+const LogInContainer = () => {
 	return (
-		<Login onSignUpClicked = {onSignUpClicked}/>
+		<LogIn onLogIn = {onLogIn}/>
 
 )};
 
-export default LoginContainer;
+export default LogInContainer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
-import LoginContainer from './containers/LoginContainer';
+import LogInContainer from './containers/LogInContainer';
 import SignupContainer from './containers/SignUpContainer';
 import ImageGallery from './components/ImageGallery';
 
@@ -10,7 +10,7 @@ function App() {
 		<React.StrictMode>
   			<BrowserRouter>
    				<Switch>
-    				<Route exact path = {["/", "/login"]} component={LoginContainer} />
+    				<Route exact path = {["/", "/login"]} component={LogInContainer} />
     				<Route exact path="/signup" component={SignupContainer} />
     				<Route exact path="/images" component={ImageGallery} />
   				</Switch>
