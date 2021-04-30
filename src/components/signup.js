@@ -1,11 +1,6 @@
 import React, {Component} from 'react'
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@material-ui/core'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
@@ -35,7 +30,6 @@ class LogIn extends Component {
       const paperStyle = { padding: 20, width: 300, margin: "0 auto" }
       const headerStyle = { margin: 0 }
       const avatarStyle = { backgroundColor: '#1bbd7e' }
-      const marginTop = { marginTop: 5 }
 		
 		return(
 			<Grid>

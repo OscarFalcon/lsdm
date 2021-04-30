@@ -1,44 +1,56 @@
-import * as React from 'react';
+import React, {Component} from 'react'
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+class ImageGallery extends Component {
 
-const ImageGallery = () => {
-  return (  
-    <ImageList sx={{ width: 500, height: 450 }}>
-      <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">December</ListSubheader>
-      </ImageListItem>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            srcSet={`${item.img}?w=248&fit=crop&auto=format 1x,
-                ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={'heloo'}
-            subtitle={item.author}
-            actionIcon={
-              <IconButton
-                sx={{ color: 'rgb(255, 255, 255)' }}
-                aria-label={`info about ${item.title}`}
-              >
-                <DeleteIcon style={{ color: 'red' }}/>
-			</IconButton>
-            }
-          />
-        </ImageListItem>
+constructor(props) {
+	super(props);
+	this.state = {};
+   this.handleOnDeleteIconClicked = this.handleOnDeleteIconClicked.bind(this);
+	//this.somethingelse = this.handleSubmit.bind(this);
+};
+
+handleOnDeleteIconClicked(event, url) {
+	console.log("Delete button pressed");
+	console.log(url);
+};
+
+render() {
+	return (  
+		<ImageList sx={{ width: 500, height: 450 }}>
+	  		<ImageListItem key="Subheader" cols={2}>
+      		<ListSubheader component="div">My Images</ListSubheader>
+      	</ImageListItem>
+      
+		{ itemData.map((item) => (
+      	<ImageListItem key={item.img}>
+         	<img
+            	srcSet={`${item.img}?w=248&fit=crop&auto=format 1x, ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            	alt={item.title}
+           	 	loading="lazy"
+          	/>
+          	<ImageListItemBar
+            	title={item.title}
+            	subtitle={item.author}
+            	actionIcon={
+              		<IconButton
+							sx={{ color: 'rgb(255, 255, 255)' }}
+                		aria-label={`info about ${item.title}`}
+							onClick={()=>this.handleOnDeleteIconClicked(this, item.img)}
+            		>
+            			<DeleteIcon style={{ color: 'red' }}/>
+						</IconButton>
+            	}
+				/>
+			</ImageListItem>
       ))}
-    </ImageList>
-  );
-}
+    	</ImageList>
+)}};
 
 
 const itemData = [
