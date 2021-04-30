@@ -1,9 +1,11 @@
 import React from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-const Login=({handleChange})=>{
+
+const Login=({onSignUpClicked})=>{
 
     const paperStyle={padding :20,height:'73vh',width:300, margin:"0 auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
@@ -28,18 +30,18 @@ const Login=({handleChange})=>{
                  />
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
                 <Typography >
-                     <Link href="#" >
-                        Forgot password ?
+                     <Link to="/forgot" >
+                        Forgot password?
                 </Link>
                 </Typography>
-                <Typography > Do you have an account ?
-                     <Link href="#" onClick={()=>handleChange("event",1)} >
-                        Sign Up 
-                </Link>
+                <Typography > Dont have have an account?
+						  <Link to="/signup">
+						  		Sign Up
+						  </Link>
                 </Typography>
             </Paper>
         </Grid>
     )
 }
 
-export default Login
+export default Login;
