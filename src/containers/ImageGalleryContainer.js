@@ -93,28 +93,30 @@ class ImageGalleryContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { imageData: [] };
+		this.onDeleteConfirmed = this.onDeleteConfirmed.bind(this);
 	};
 	
 	getUserImages(){
 		return imageData;
 	};
 	
-	onDeleteConfirmed(){
-		console.log("Deleting image");
-	};
-
-	onDeleteInitiated(image){
+	onDeleteConfirmed(image){
 		console.log(this);
 		console.log("Delete image: " + image.url);
+		
+		var new_data = [...this.state.imageData];
+  	 	var index = new_data.indexOf(image)
+		new_data.splice(index, 1);
+		this.setState({imageData: new_data});
 	};
-	
+
 	componentDidMount(){
 		this.setState({imageData : this.getUserImages()});
 	};
 	
 	render(){
 		return (
-			<ImageGallery onDeleteInitiated={this.onDeleteInitiated} onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
+			<ImageGallery onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
 	)};
 
 

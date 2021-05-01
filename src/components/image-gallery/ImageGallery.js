@@ -10,7 +10,7 @@ render() {
 			<div> My Images </div>
     		<ImageList>
 				{ this.props.imageData.map((image) => (
-     				<ImageFrame image={image} key={image.id} handleOnDeleteIconClicked={this.props.onDeleteInitiated}/>
+     				<ImageFrame image={image} key={image.id} onDeleteConfirmed={this.props.onDeleteConfirmed}/>
       		))}
     		</ImageList>
 		</div>
