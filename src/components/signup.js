@@ -10,22 +10,12 @@ class LogIn extends Component {
 		super(props);
 		this.state = {};
       this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	};
 	
 	handleChange(event) {
 		this.setState({ ...this.state, [event.target.name]: event.target.value });
-		console.log(this.state);
 	};
-
-	handleSubmit(event) {
-		console.log("submit: " + event.target);
-		console.log(this.state);
-		console.log(this.props);
-		this.props.onSubmit(this.state);
-		event.preventDefault();
-	};
-   
+	
 	render(){
       const paperStyle = { padding: 20, width: 300, margin: "0 auto" }
       const headerStyle = { margin: 0 }
@@ -39,11 +29,11 @@ class LogIn extends Component {
             	<h2 style={headerStyle}>Sign Up</h2>
             	<Typography variant='caption' gutterBottom>Sign up for an account.</Typography>
          	</Grid>
-				<form onSubmit={this.handleSubmit}>
+			<form onSubmit={(event)=>this.props.onSubmit(event, this.state)}>
 					<TextField fullWidth label='First Name' placeholder="Enter your name" name="firstName" onChange={this.handleChange}/>
            	 	<TextField fullWidth label='Last Name' placeholder="Enter your name" name="lastName" onChange={this.handleChange}/>
            	 	<TextField fullWidth label='Email' placeholder="Enter your email" name="email" onChange={this.handleChange}/>
-           	 	<TextField fullWidth label='Password' placeholder="Enter your password" name="password "onChange={this.handleChange}/>
+           	 	<TextField fullWidth label='Password' placeholder="Enter your password" name="password" onChange={this.handleChange}/>
            	 	<TextField fullWidth label='Confirm Password' placeholder="Confirm your password" name="confirmpassword" onChange={this.handleChange}/>
 					<FormControl labelcontrol={<Checkbox name="checked" />} label="I accept the terms and conditions." name="terms" onChange={this.handleChange}/>
 		 			<Button 

@@ -11,7 +11,6 @@ class LogIn extends Component {
 		super(props);
 		this.state = {};
       this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	};
 	
 	handleChange(event) {
@@ -19,14 +18,6 @@ class LogIn extends Component {
 		console.log(this.state);
 	};
 
-	handleSubmit(event) {
-		console.log("submit: " + event.target);
-		console.log(this.state);
-		console.log(this.props);
-		this.props.onLogIn(this.state);
-		event.preventDefault();
-	};
-	
 	render(){
 		const paperStyle={padding :20,height:'73vh',width:300, margin:"0 auto"}
     	const avatarStyle={backgroundColor:'#1bbd7e'}
@@ -38,7 +29,7 @@ class LogIn extends Component {
             	<Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                <h2>Sign In</h2>
             </Grid>
-				<form onSubmit={this.handleSubmit}>
+			<form onSubmit={(e)=>this.props.onLogIn(e, this.state)}>
             	<TextField label='Username' placeholder='Enter username' fullWidth required name="username" onChange={this.handleChange}/>
             	<TextField label='Password' placeholder='Enter password' type='password' fullWidth required name="passsord" onChange={this.handleChange}/>
             	<FormControlLabel
