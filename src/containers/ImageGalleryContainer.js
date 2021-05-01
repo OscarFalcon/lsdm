@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ImageGallery from '../components/image-gallery/ImageGallery'
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const imageData = [
   {
@@ -92,34 +93,90 @@ class ImageGalleryContainer extends Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = { imageData: [] };
+		this.state = { 
+			imageData: [],
+			errorVisibility : 'hidden',
+			successVisibility : 'hidden'
+		};
+		
+		
 		this.onDeleteConfirmed = this.onDeleteConfirmed.bind(this);
 	};
 	
 	getUserImages(){
 		return imageData;
 	};
-	
-	onDeleteConfirmed(image){
-		console.log(this);
-		console.log("Delete image: " + image.url);
 		
+	deleteImage(image){
+		return false;
+	}
+
+	removeImageFromView(image){
 		var new_data = [...this.state.imageData];
   	 	var index = new_data.indexOf(image)
 		new_data.splice(index, 1);
-		this.setState({imageData: new_data});
-	};
+		return new_data;
+	}
 
+	removeAlertInXSecs(alertAttribute, secs){
+		setTimeout(() => {
+			this.setState((prevState, props) => ({
+				...prevState,
+				[alertAttribute] : 'hidden'
+			}));
+			console.log(this.state);
+		},
+		secs)
+		
+		console.log(this.state);
+	}
+
+	onDeleteConfirmed(image){
+		console.log(this);
+		console.log("Delete image: " + image.url);
+	
+		var success = this.deleteImage(image);
+		if (success){
+			var new_images = this.removeImageFromView(image);
+			this.setState((prevState, props) => ({
+				...prevState,
+				imageData: new_images,
+				successVisibility : 'visible'
+			}));
+			
+			this.removeAlertInXSecs('successVisibility', 3500);
+		}
+		else{
+			this.setState((prevState, props) => ({
+				...prevState,
+				errorVisibility : 'visible'
+			}));
+			
+			this.removeAlertInXSecs('errorVisibility', 3500);
+		}
+	};
+	
 	componentDidMount(){
-		this.setState({imageData : this.getUserImages()});
+		this.setState((prevState, props) => ({
+			...prevState,
+			imageData: this.getUserImages(),
+		}));
 	};
 	
 	render(){
 		return (
-			<ImageGallery onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
+			<div>
+				<ImageGallery onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
+				<Alert severity="error" style={{visibility : `${ this.state.errorVisibility }`, position:'fixed', bottom:'20px'}}>
+  		 			<AlertTitle>Error in deleting image</AlertTitle>
+						Please try again later.
+				</Alert>
+				<Alert severity="success" style={{visibility : `${ this.state.successVisibility }`, position:'fixed', bottom:'20px'}}>
+  		 			<AlertTitle>Deleted Image</AlertTitle>
+  		 				Image successfully deleted.
+				</Alert>
+			</div>
 	)};
-
-
 };
 
 export default ImageGalleryContainer;

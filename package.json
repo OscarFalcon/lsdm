@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "5.0.0-alpha.23",
     "@material-ui/icons": "5.0.0-alpha.15",
+    "@material-ui/lab": "4.0.0-alpha.58",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@testing-library/jest-dom": "^5.12.0",
