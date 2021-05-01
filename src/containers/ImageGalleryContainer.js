@@ -1,151 +1,123 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import React, {Component} from 'react'
+import ImageGallery from '../components/image-gallery/ImageGallery'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const imageData = [
+  {
+	 id: 1,
+    url: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    title: 'Breakfast',
+    author: '@bkristastucchio',
+    rows: 2,
+    cols: 2,
+    featured: true,
+  },
+  {
+	 id: 2,
+    url: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    title: 'Burger',
+    author: '@rollelflex_graphy726',
+  },
+  {
+	 id: 3,
+    url: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    title: 'Camera',
+    author: '@helloimnik',
+  },
+  {
+	 id: 4,
+    url: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    title: 'Coffee',
+    author: '@nolanissac',
+    cols: 2,
+  },
+  {
+	 id: 5,
+    url: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    title: 'Hats',
+    author: '@hjrc33',
+    cols: 2,
+  },
+  {
+	 id: 6,
+    url: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    title: 'Honey',
+    author: '@arwinneil',
+    rows: 2,
+    cols: 2,
+    featured: true,
+  },
+  {
+	 id: 7,
+    url: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+    title: 'Basketball',
+    author: '@tjdragotta',
+  },
+  {
+	  id: 8,
+    url: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+    title: 'Fern',
+    author: '@katie_wasserman',
+  },
+  {
+	 id: 9,
+    url: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+    title: 'Mushrooms',
+    author: '@silverdalex',
+    rows: 2,
+    cols: 2,
+  },
+  {
+	 id: 10,
+    url: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+    title: 'Tomato basil',
+    author: '@shelleypauls',
+  },
+  {
+	 id: 11,
+    url: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+    title: 'Sea star',
+    author: '@peterlaster',
+  },
+  {
+	 id: 12,
+    url	: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+    title: 'Bike',
+    author: '@southside_customs',
+    cols: 2,
+  },
+];
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+class ImageGalleryContainer extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.state = { imageData: [] };
+	};
+	
+	getUserImages(){
+		return imageData;
+	};
+	
+	onDeleteConfirmed(){
+		console.log("Deleting image");
+	};
 
-export default function Album() {
-  const classes = useStyles();
+	onDeleteInitiated(image){
+		console.log(this);
+		console.log("Delete image: " + image.url);
+	};
+	
+	componentDidMount(){
+		this.setState({imageData : this.getUserImages()});
+	};
+	
+	render(){
+		return (
+			<ImageGallery onDeleteInitiated={this.onDeleteInitiated} onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
+	)};
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Album layout
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-              entirely.
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    Main call to action
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
-                  </Button>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography>
-        <s />
-      </footer>
-      {/* End footer */}
-    </React.Fragment>
-  );
+
+};
+
+export default ImageGalleryContainer;

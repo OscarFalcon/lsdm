@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import LogInContainer from './containers/LogInContainer';
 import SignupContainer from './containers/SignUpContainer';
-import ImageGallery from './components/ImageGallery';
+import ImageGalleryContainer from './containers/ImageGalleryContainer';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
    				<Switch>
     				<Route exact path = {["/", "/login"]} component={LogInContainer} />
     				<Route exact path="/signup" component={SignupContainer} />
-    				<Route exact path="/images" component={ImageGallery} />
+    				<Route exact path="/images" component={ImageGalleryContainer} />
   				</Switch>
   			</BrowserRouter>
   		</React.StrictMode>
