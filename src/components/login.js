@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import AccountBox from '@material-ui/icons/AccountBox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
@@ -26,7 +26,7 @@ class LogIn extends Component {
       	<Grid>
 				<Paper  style={paperStyle}>
             <Grid align='center'>
-            	<Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+            	<Avatar style={avatarStyle}><AccountBox/></Avatar>
                <h2>Sign In</h2>
             </Grid>
 			<form onSubmit={(e)=>this.props.onLogIn(e, this.state)}>
