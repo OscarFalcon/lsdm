@@ -30,6 +30,7 @@ class SignUp extends Component {
             	<Typography variant='caption' gutterBottom>Sign up for an account.</Typography>
          	</Grid>
 			<form onSubmit={(event)=>this.props.onSubmit(event, this.state)}>
+					<TextField fullWidth label='Username' placeholder="Enter username" name="username" onChange={this.handleChange}/>			
 					<TextField fullWidth label='First Name' placeholder="Enter your name" name="firstName" onChange={this.handleChange}/>
            	 	<TextField fullWidth label='Last Name' placeholder="Enter your name" name="lastName" onChange={this.handleChange}/>
            	 	<TextField fullWidth label='Email' placeholder="Enter your email" name="email" onChange={this.handleChange}/>

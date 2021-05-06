@@ -32,6 +32,12 @@ class SignUpContainer extends Component {
 		var valid = true;
 		var errorTitle = null, errorMessage = null;
 		
+		if (!signUpPayload.username){
+			valid = false;
+			errorTitle = 'Username';
+			errorMessage = 'Please enter username';
+		}
+		
 		if (!signUpPayload.firstName){
 			valid = false;
 			errorTitle = 'First Name';
@@ -99,6 +105,8 @@ class SignUpContainer extends Component {
 				console.log(error);
 				this.setState((prevState, props) => ({
 					...prevState,
+					errorTitle : 'Failed to sign up',
+					errorMessage: 'There was an error signing up, please try again later.',
 					errorVisibility : 'visible'
 				}));	
 				
