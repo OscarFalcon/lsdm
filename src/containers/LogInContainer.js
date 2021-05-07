@@ -22,15 +22,19 @@ class LogInContainer extends Component {
 		},
 		secs)
 	}
-	
+
 	onLogIn(event, loginRequest){
 		event.preventDefault();
 		post('http://localhost:8081/login', loginRequest)
 		.then((response) => {
-			this.setState((prevState, props) => ({
-				...prevState,
-				redirect : true
-			}));
+			console.log(response);
+			if (response.status === 200 && response.data && response.data.jwt){
+				localStorage.setItem('token', response.data.jwt);
+				this.setState((prevState, props) => ({
+					...prevState,
+					redirect : true
+				}));
+			}
 		},(error) => {
 			console.log(error);
 			this.setState((prevState, props) => ({

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios';
 import ImageGallery from '../components/image-gallery/ImageGallery'
 import { Alert, AlertTitle } from '@material-ui/lab';
 
@@ -16,15 +17,16 @@ class ImageGalleryContainer extends Component {
 		this.onDeleteConfirmed = this.onDeleteConfirmed.bind(this);
 	};
 	
-	getUserImages(){
-		fetch('http://localhost:8081/images')
-			.then(res => res.json())
-		  	.then((data) => {
-				this.setState((prevState, props) => ({
-					...prevState,
-					imageData: data,
-				}));
-			});
+	async getUserImages(){
+		const response = await axios.get('http://localhost:8081/images', {
+			headers: {
+				'Authorization': localStorage.getItem('token')
+			}
+		});
+		this.setState((prevState, props) => ({
+			...prevState,
+			imageData: response.data,
+		}));
 	};
 		
 	deleteImage(image){

@@ -31,7 +31,7 @@ class LogIn extends Component {
             </Grid>
 			<form onSubmit={(e)=>this.props.onLogIn(e, this.state)}>
             	<TextField label='Username' placeholder='Enter username' fullWidth required name="username" onChange={this.handleChange}/>
-            	<TextField label='Password' placeholder='Enter password' type='password' fullWidth required name="passsord" onChange={this.handleChange}/>
+            	<TextField label='Password' placeholder='Enter password' type='password' fullWidth required name="password" onChange={this.handleChange}/>
             	<FormControlLabel
             		control={
                		<Checkbox
