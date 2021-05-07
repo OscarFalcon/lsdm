@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 import { Alert, AlertTitle } from '@material-ui/lab';
-import LogIn from '../components/LogIn'
+import LogIn from '../components/pages/LogIn'
 import {post} from 'axios';
 
 

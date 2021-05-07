@@ -42,7 +42,7 @@ class ImageFrame extends Component {
 		return(
 			<ImageListItem key={image.id}>
    			<img
-      			srcSet={`${image.ref}?w=248&fit=crop&auto=format 1x, ${image.ref}?w=248&fit=crop&auto=format&dpr=2 2x`}
+      			srcSet={`${image.url}?w=248&fit=crop&auto=format 1x, ${image.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
       			alt={image.title}
      	 			loading="lazy"
     			/>

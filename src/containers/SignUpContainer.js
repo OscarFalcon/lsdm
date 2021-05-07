@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import {post} from 'axios';
-import SignUp from '../components/SignUp'
+import SignUp from '../components/pages/SignUp'
 
 
 class SignUpContainer extends Component {
@@ -53,7 +53,7 @@ class SignUpContainer extends Component {
 		else if (!this.validateEmail(signUpPayload.email)){
 			valid = false;
 			errorTitle =  'Invalid Email';
-			errorMessage ='Please enter valida email';
+			errorMessage ='Please enter valid email';
 		}
 		
 		else if (!signUpPayload.password){
@@ -117,7 +117,7 @@ class SignUpContainer extends Component {
 	
 	renderRedirect = () => {
 		if (this.state.redirect) {
-	   	return <Redirect to='/login' />
+	   	return <Redirect to='/LogIn' />
 	   }
 	}
 	

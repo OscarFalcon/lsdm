@@ -1,21 +1,30 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
-import LogInContainer from './containers/LogInContainer';
-import SignupContainer from './containers/SignUpContainer';
-import ImageGalleryContainer from './containers/ImageGalleryContainer';
+import Navbar from './components/navbar/Navbar';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './components/pages/Home'
+import Upload from './components/pages/Upload'
+import Footer from './components/footbar/Footer'
+import SignUpContainer from './containers/SignUpContainer'
+import LogInContainer from './containers/LogInContainer'
 
 function App() {
   return (
-		<React.StrictMode>
-  			<BrowserRouter>
-   				<Switch>
-    				<Route exact path = {["/", "/login"]} component={LogInContainer} />
-    				<Route exact path="/signup" component={SignupContainer} />
-    				<Route exact path="/images" component={ImageGalleryContainer} />
-  				</Switch>
-  			</BrowserRouter>
-  		</React.StrictMode>
-)};
+    <>
+      <Router>
+        <Navbar />
+          <Switch>
+            <Route path ='/' exact component = {Home}/>
+            <Route path = '/Upload' exact component = {Upload} />
+            <Route path = '/SignUp' exact component = {SignUpContainer}/>
+            <Route path = '/LogIn' exact component = {LogInContainer} />
+          </Switch>
+          <Footer />
+      </Router>
+   
+    </>
+	
+  );
+}
 
 export default App;
