@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios';
 import ImageGallery from '../components/image-gallery/ImageGallery'
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Alert, AlertTitle } from '@material-ui/core';
 
 
 class ImageGalleryContainer extends Component {
@@ -18,12 +18,13 @@ class ImageGalleryContainer extends Component {
 	};
 	
 	async getUserImages(){
-		const response = await axios.get('http://localhost:8081/images', {
+		const response =  await axios.get('http://localhost:8081/images', {
 			headers: {
 				'Authorization': localStorage.getItem('token')
 			}
 		});
-		this.setState((prevState, props) => ({
+		
+		 this.setState((prevState, props) => ({
 			...prevState,
 			imageData: response.data,
 		}));
