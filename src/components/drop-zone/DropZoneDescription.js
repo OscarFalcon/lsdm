@@ -1,12 +1,11 @@
 import React from 'react'
 import DropzoneComponent from './DropeZoneComponent'
 import './DropZoneDescription.css'
-import { Button } from '../common/Buttons'
-import { Link } from 'react-router-dom';
+import Button from '../common/Buttons'
 
 function DropZoneDescription(){
     return(
-        <>
+        <div>
             <div className = 'dropzonedescription-container'>
                 <h1>
                     Start by uploading your files here
@@ -20,13 +19,13 @@ function DropZoneDescription(){
                 </p>
                 <p className = 'dropzonedescription-info'>
                    Trying to upload from Google Drive? 
-                   <Button>
-                    <Link to ='/SignUp'>Start Here </Link>
+                   <Button linkTo='/login'>
+                   	Start Here
                    </Button>
                 </p>
             </div>
 
-        </>
+        </div>
     )
 }
 

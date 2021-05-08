@@ -1,5 +1,6 @@
 import React from 'react'
 import Dropzone from 'react-dropzone-uploader'
+
 import 'react-dropzone-uploader/dist/styles.css'
 
 /* const baseStyle = {
@@ -16,9 +17,18 @@ import 'react-dropzone-uploader/dist/styles.css'
   transition: 'border .3s ease-in-out'
 }; */
 
+
+
 const MyUploader = () => {
-  // CHANGE URL TO SOMETHING ELSE LATER
-  const getUploadParams = ({ meta }) => { return { url: 'https://httpbin.org/post' } }
+	
+  const getUploadParams = ({ meta }) => { 
+	  return {
+		   url: 'http://localhost:8081/images',
+			headers : {
+				Authorization : localStorage.getItem('token')
+			}
+		}
+  };
 
   const handleChangeStatus = ({ meta, file }, status) => { console.log(status, meta, file) }
 
@@ -27,11 +37,14 @@ const MyUploader = () => {
     allFiles.forEach(f => f.remove())
   }
 
+  const onDrop = () => {console.log('onDrop')};
+
   return (
     <Dropzone
       getUploadParams={getUploadParams}
       onChangeStatus={handleChangeStatus}
       onSubmit={handleSubmit}
+		onDrop={onDrop}
       accept="image/*"
     />
   )

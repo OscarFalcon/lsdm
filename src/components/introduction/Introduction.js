@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css'
-import { Button } from '../common/Buttons';
+import Button from '../common/Buttons';
 import './Introduction.css';
 
 function Introduction() {

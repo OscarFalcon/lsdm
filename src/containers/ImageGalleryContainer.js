@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import ImageGallery from '../components/image-gallery/ImageGallery'
 import { Alert, AlertTitle } from '@material-ui/core';
-
+import jwt from 'jsonwebtoken'
 
 class ImageGalleryContainer extends Component {
-	
+		
 	constructor(props) {
 		super(props);
 		this.state = { 
@@ -15,6 +16,7 @@ class ImageGalleryContainer extends Component {
 		};
 		
 		this.onDeleteConfirmed = this.onDeleteConfirmed.bind(this);
+		this.renderRedirect = this.renderRedirect.bind(this);
 	};
 	
 	async getUserImages(){
@@ -73,13 +75,40 @@ class ImageGalleryContainer extends Component {
 		}
 	};
 	
+	verrifyAuthToken(){
+		const token = localStorage.getItem('token');
+		var decodedToken = jwt.decode(token, {complete: true});
+		var dateNow = new Date();
+		
+		//compare jwt time in seconds to date (divide by 1000 to get seconds )
+		// 1620433881 < 1620444180.206
+		return decodedToken.payload.exp > (dateNow.getTime() / 1000)
+	}
+	
 	componentDidMount(){
-		this.getUserImages();
+		if (this.verrifyAuthToken() === false){
+			this.setRedirect();
+		} else {
+			this.getUserImages();
+		}
 	};
+	
+	setRedirect = () => {
+		this.setState({
+	   	redirect: true
+	   });
+	}
+	
+	renderRedirect = () => {
+	    if (this.state.redirect) {
+	      return <Redirect to='/login' />
+	    }
+	 }
 	
 	render(){
 		return (
 			<div>
+				{ this.renderRedirect() }
 				<ImageGallery onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
 				<Alert severity="error" style={{visibility : `${ this.state.errorVisibility }`, position:'fixed', bottom:'20px'}}>
   		 			<AlertTitle>Error in deleting image</AlertTitle>
