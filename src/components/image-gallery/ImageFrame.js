@@ -41,26 +41,24 @@ class ImageFrame extends Component {
 	
 	
 	setStateAfterImage(event){
+		console.log(event);
 		const base64 = event.target.result;
 		console.log(event);
 		this.setState((prevState, props) => ({
  			...prevState,
- 			//imageBase64: `data:image/jpg;base64,${Buffer.from(response.data).toString('base64')}`
 			imageBase64: base64
  		}));
 	}
 	
-	
 	async fetchImage(){
+		console.log(this.props.image);
 		const response =  await axios.get(this.props.image.ref, {
 			responseType: 'blob',
 			headers: {
 				'Authorization': localStorage.getItem('token')
 			}
 		});
-		
-		//console.log(`data:image/jpg;base64,${Buffer.from(response.data).toString('base64')}`);
-		
+				
 		var reader = new FileReader();
 		reader.readAsDataURL(response.data); 
 		reader.onloadend = this.setStateAfterImage;
@@ -72,15 +70,12 @@ class ImageFrame extends Component {
 	
 	render(){
 		const image = this.props.image;
-		//console.log(this.props.image);
-		console.log("render!")
-		console.log(this.state.imageBase64);
 		return(
 			<ImageListItem key={image.id}>
 				<img src={ this.state.imageBase64 ? this.state.imageBase64 : ''}
       			alt={image.title}
-					width="400"
-					height="400"
+					width="100%"
+					height="100%"
 					//loading="lazy"
     			/>
     			<ImageListItemBar

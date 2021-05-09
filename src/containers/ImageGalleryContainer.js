@@ -31,8 +31,18 @@ class ImageGalleryContainer extends Component {
 		}));
 	};
 		
-	deleteImage(image){
-		return true;
+	async deleteImage(image){
+		try{ 
+			const response =  await axios.delete(image.ref, {
+			headers: {
+				'Authorization': localStorage.getItem('token')
+			}});
+			console.log(response);
+			return true;
+		}
+		catch (err){
+			return false;
+		}
 	}
 
 	removeImageFromView(image){
@@ -52,7 +62,9 @@ class ImageGalleryContainer extends Component {
 		secs)
 	}
 
-	onDeleteConfirmed(image){	
+	onDeleteConfirmed(image){
+		console.log('delete initiated', image);
+		
 		var success = this.deleteImage(image);
 		if (success){
 			var new_images = this.removeImageFromView(image);
