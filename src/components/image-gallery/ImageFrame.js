@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import axios from 'axios';
 import DeleteImageDialog from './DeleteImageDialog';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
@@ -13,6 +14,7 @@ class ImageFrame extends Component {
 		this.handleDeleteIconClicked = this.handleDeleteIconClicked.bind(this);
 		this.handleDialogNo = this.handleDialogNo.bind(this);
 		this.handleDialogYes = this.handleDialogYes.bind(this);
+		this.setStateAfterImage = this.setStateAfterImage.bind(this);
 	};
 	
 	handleDeleteIconClicked(event){
@@ -37,14 +39,49 @@ class ImageFrame extends Component {
 		this.props.onDeleteConfirmed(this.props.image);
 	}
 	
+	
+	setStateAfterImage(event){
+		const base64 = event.target.result;
+		console.log(event);
+		this.setState((prevState, props) => ({
+ 			...prevState,
+ 			//imageBase64: `data:image/jpg;base64,${Buffer.from(response.data).toString('base64')}`
+			imageBase64: base64
+ 		}));
+	}
+	
+	
+	async fetchImage(){
+		const response =  await axios.get(this.props.image.ref, {
+			responseType: 'blob',
+			headers: {
+				'Authorization': localStorage.getItem('token')
+			}
+		});
+		
+		//console.log(`data:image/jpg;base64,${Buffer.from(response.data).toString('base64')}`);
+		
+		var reader = new FileReader();
+		reader.readAsDataURL(response.data); 
+		reader.onloadend = this.setStateAfterImage;
+	};
+	
+	componentDidMount() {
+		this.fetchImage();
+	}
+	
 	render(){
 		const image = this.props.image;
+		//console.log(this.props.image);
+		console.log("render!")
+		console.log(this.state.imageBase64);
 		return(
 			<ImageListItem key={image.id}>
-   			<img
-      			srcSet={`${image.ref}?w=248&fit=crop&auto=format 1x, ${image.ref}?w=248&fit=crop&auto=format&dpr=2 2x`}
+				<img src={ this.state.imageBase64 ? this.state.imageBase64 : ''}
       			alt={image.title}
-     	 			loading="lazy"
+					width="400"
+					height="400"
+					//loading="lazy"
     			/>
     			<ImageListItemBar
       			title={image.title}

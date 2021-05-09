@@ -25,7 +25,6 @@ class ImageGalleryContainer extends Component {
 				'Authorization': localStorage.getItem('token')
 			}
 		});
-		
 		 this.setState((prevState, props) => ({
 			...prevState,
 			imageData: response.data,
