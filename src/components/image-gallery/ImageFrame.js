@@ -76,7 +76,7 @@ class ImageFrame extends Component {
       			alt={image.title}
 					width="100%"
 					height="100%"
-					//loading="lazy"
+					loading="lazy"
     			/>
     			<ImageListItemBar
       			title={image.title}
