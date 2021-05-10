@@ -5,6 +5,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import config from '../../config'
 
 class ImageFrame extends Component {
 	
@@ -52,7 +53,7 @@ class ImageFrame extends Component {
 	
 	async fetchImage(){
 		console.log(this.props.image);
-		const response =  await axios.get(this.props.image.ref, {
+		const response =  await axios.get(config.service + this.props.image.ref, {
 			responseType: 'blob',
 			headers: {
 				'Authorization': localStorage.getItem('token')
