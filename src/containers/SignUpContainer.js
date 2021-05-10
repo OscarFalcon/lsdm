@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { Alert, AlertTitle } from '@material-ui/core';
 import {post} from 'axios';
 import SignUp from '../components/pages/SignUp'
-
+import config from '../config'
 
 class SignUpContainer extends Component {
 	
@@ -98,7 +98,7 @@ class SignUpContainer extends Component {
 	onSubmit(event, signUpPayload){
 		event.preventDefault();
 		if (this.validateSignUpParams(signUpPayload)){
-			post('http://localhost:8081/signup', signUpPayload)
+			post(config.service + '/signup', signUpPayload)
 			.then((response) => {
 				this.successAndRedirect(3500);
 			},(error) => {

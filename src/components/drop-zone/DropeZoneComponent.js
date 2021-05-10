@@ -1,5 +1,6 @@
-import React from 'react'
-import Dropzone from 'react-dropzone-uploader'
+import React from 'react';
+import Dropzone from 'react-dropzone-uploader';
+import config from '../../config';
 
 import 'react-dropzone-uploader/dist/styles.css'
 
@@ -23,7 +24,7 @@ const MyUploader = () => {
 	
   const getUploadParams = ({ meta }) => { 
 	  return {
-		   url: 'http://localhost:8081/images',
+		   url: config.service + '/images',
 			headers : {
 				Authorization : localStorage.getItem('token')
 			}

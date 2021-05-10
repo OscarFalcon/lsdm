@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { Alert, AlertTitle } from '@material-ui/core';
 import LogIn from '../components/pages/LogIn'
 import {post} from 'axios';
-
+import config from '../config'
 
 class LogInContainer extends Component {
 	
@@ -25,7 +25,7 @@ class LogInContainer extends Component {
 
 	onLogIn(event, loginRequest){
 		event.preventDefault();
-		post('http://localhost:8081/login', loginRequest)
+		post(config.service + '/login', loginRequest)
 		.then((response) => {
 			console.log(response);
 			if (response.status === 200 && response.data && response.data.jwt){

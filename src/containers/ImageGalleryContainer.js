@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
-import axios from 'axios';
+import axios from 'axios'
 import ImageGallery from '../components/image-gallery/ImageGallery'
-import { Alert, AlertTitle } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/core'
 import jwt from 'jsonwebtoken'
+import config from '../config'
 
 class ImageGalleryContainer extends Component {
 		
@@ -20,7 +21,7 @@ class ImageGalleryContainer extends Component {
 	};
 	
 	async getUserImages(){
-		const response =  await axios.get('http://localhost:8081/images', {
+		const response =  await axios.get(config.service + '/images', {
 			headers: {
 				'Authorization': localStorage.getItem('token')
 			}
