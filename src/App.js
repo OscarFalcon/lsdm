@@ -8,6 +8,7 @@ import SignUpContainer from './containers/SignUpContainer';
 import LogInContainer from './containers/LogInContainer';
 import ImageGalleryContainer from './containers/ImageGalleryContainer'
 import UploadContainer from './containers/UploadContainer';
+import ImageGalleryAuth from './components/image-gallery/ImageGalleryAuth';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path = '/signup' exact component = {SignUpContainer}/>
             <Route path = '/login' exact component = {LogInContainer} />
             <Route path = '/images' exact component = {ImageGalleryContainer} />
+            <Route path = '/imageAuth' exact component = {ImageGalleryAuth} />
           </Switch>
           <Footer />
       </Router>

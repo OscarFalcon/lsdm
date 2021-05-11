@@ -2,23 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone-uploader';
 import config from '../../config';
 
-import 'react-dropzone-uploader/dist/styles.css'
-
-/* const baseStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '150px',
-  borderWidth: 4,
-  borderRadius: 10,
-  borderColor: '#eeeeee',
-  borderStyle: 'solid',
-  backgroundColor: '#fff',
-  color: '#bdbdbd',
-  transition: 'border .3s ease-in-out'
-}; */
-
-
+import './DropZoneComponent.css';
 
 const MyUploader = () => {
 	

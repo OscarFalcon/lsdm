@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Buttons';
 import './Navbar.css';
+import jwt from 'jsonwebtoken';
+
 
 
 function Navbar() {
@@ -47,8 +49,13 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            < Link to ='/SignUp' className = 'nav-links-mobile' onClick={closeMobileMenu}>
-                                Sign Up
+                            <Link to = 'ImageAuth' className = 'nav-links' onClick={closeMobileMenu}>
+                                Image Gallery
+                            </Link>
+                        </li>
+                        <li>
+                            < Link to ='/login' className = 'nav-links-mobile' onClick={closeMobileMenu}>
+                                Log In
                             </Link>
                         </li>
                     </ul>
