@@ -12,6 +12,7 @@ function Navbar() {
     const closeMobileMenu = () => setClick(false)
 
     var logInState = 0;
+    var isLoggedIn;
 
     var state = ["Log in", "Log Out"];
     
@@ -24,7 +25,7 @@ function Navbar() {
         }
     };
 
-    var verrifyAuthToken = () => {
+    const verrifyAuthToken = () => {
 		const token = localStorage.getItem('token');
 		var decodedToken = jwt.decode(token, {complete: true});
 		var dateNow = new Date();
@@ -34,7 +35,7 @@ function Navbar() {
 
     useEffect(() => {
         showButton();
-        if(verrifyAuthToken === true)
+        if(verrifyAuthToken() === true)
             logInState = 1;
         else
             logInState = 0;
