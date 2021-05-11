@@ -2,7 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone-uploader';
 import config from '../../config';
 
-import 'react-dropzone-uploader/dist/styles.css'
+import './DropZoneComponent.css';
 
 /* const baseStyle = {
   display: 'flex',

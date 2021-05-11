@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Buttons';
 import './Navbar.css';
-
+import jwt from 'jsonwebtoken';
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false)
+    const closeMobileMenu = () => setClick(false);
+
+    var logInState = 0;
+    var state = ["Log in", "Log Out"];
 
     const showButton = () => {
         if(window.innerWidth <= 960){
@@ -19,8 +22,21 @@ function Navbar() {
         }
     };
 
+    var verrifyAuthToken = () => {
+		const token = localStorage.getItem('token');
+		var decodedToken = jwt.decode(token, {complete: true});
+		var dateNow = new Date();
+	
+		return decodedToken.payload.exp > (dateNow.getTime() / 1000)
+	}
+
+
     useEffect(() => {
         showButton();
+        if(verrifyAuthToken() === true)
+            logInState = 1;
+        else
+            logInState = 0;
     }, []);
 
     window.addEventListener('resize', showButton);
@@ -47,12 +63,22 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
+                            <Link to = 'ImageAuth' className = 'nav-links' onClick={closeMobileMenu}>
+                                Image Gallery
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = 'duplicateAuth' className = 'nav-links' onClick={closeMobileMenu}>
+                                Duplicates
+                            </Link>
+                        </li>
+                        <li>
                             < Link to ='/SignUp' className = 'nav-links-mobile' onClick={closeMobileMenu}>
-                                Sign Up
+                                {state[logInState]}
                             </Link>
                         </li>
                     </ul>
-                    {button && <Button linkTo="/login" buttonStyle='btn--outline'>Log In</Button>}
+                    {button && <Button linkTo="/login" buttonStyle='btn--outline'>{state[logInState]}</Button>}
                 </div>
             </nav>
         </>

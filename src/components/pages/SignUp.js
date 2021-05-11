@@ -17,7 +17,7 @@ class SignUp extends Component {
 	};
 	
 	render(){
-      const paperStyle = { padding: 20, width: 300, margin: "0 auto" }
+      const paperStyle = { padding: 20, width: 300, margin: "0 auto", height:'73vh'}
       const headerStyle = { margin: 0 }
       const avatarStyle = { backgroundColor: '#1bbd7e' }
 		

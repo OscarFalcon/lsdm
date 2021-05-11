@@ -9,6 +9,8 @@ import LogInContainer from './containers/LogInContainer';
 import ImageGalleryContainer from './containers/ImageGalleryContainer'
 import UploadContainer from './containers/UploadContainer';
 import DuplicateImageGalleryContainer from './containers/DuplicateImageGalleryContainer'
+import ImageGalleryAuth from './components/image-gallery/ImageGalleryAuth';
+import DuplicateGalleryAuth from './components/image-gallery/DuplicateGalleryAuth';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path = '/login' exact component = {LogInContainer} />
             <Route path = '/images' exact component = {ImageGalleryContainer} />
             <Route path = '/duplicates' exact component = {DuplicateImageGalleryContainer} />
+            <Route path = '/imageAuth' exact component = {ImageGalleryAuth} />
+            <Route path = '/duplicateAuth' exact component = {DuplicateGalleryAuth} />
           </Switch>
           <Footer />
       </Router>
