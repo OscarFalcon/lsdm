@@ -10,7 +10,8 @@ function Introduction() {
             <h1>Duplicator Finder</h1>
             <p>Tired of duplicated images?</p>
             <div className = "intro-btns">
-                <Button className='btns' buttonStyle='btns--outline' buttonSize='btn--large'>GET STARTED</Button></div>    
+                <Button className='btns' buttonStyle='btns--outline' buttonSize='btn--large' linkTo = 'login'>GET STARTED</Button>
+                </div>    
         </div>
     )
 }

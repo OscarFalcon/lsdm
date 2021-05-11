@@ -2,9 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Buttons';
 import './Navbar.css';
-import jwt from 'jsonwebtoken';
-
-
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -13,6 +10,8 @@ function Navbar() {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false)
 
+    const isLoggedIn = false;
+
     const showButton = () => {
         if(window.innerWidth <= 960){
             setButton(false)
@@ -20,7 +19,15 @@ function Navbar() {
             setButton(true)
         }
     };
-
+/*
+    const verrifyAuthToken = () => {
+		const token = localStorage.getItem('token');
+		var decodedToken = jwt.decode(token, {complete: true});
+		var dateNow = new Date();
+	
+		return decodedToken.payload.exp > (dateNow.getTime() / 1000)
+	}
+*/
     useEffect(() => {
         showButton();
     }, []);
@@ -54,7 +61,7 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            < Link to ='/login' className = 'nav-links-mobile' onClick={closeMobileMenu}>
+                            <Link to ='/login' className = 'nav-links-mobile' onClick={closeMobileMenu}>
                                 Log In
                             </Link>
                         </li>
