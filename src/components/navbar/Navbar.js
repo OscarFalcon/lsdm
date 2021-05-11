@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Buttons';
 import './Navbar.css';
+import jwt from 'jsonwebtoken';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -10,7 +11,10 @@ function Navbar() {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false)
 
-    const isLoggedIn = false;
+    var logInState = 0;
+
+    var state = ["Log in", "Log Out"];
+    
 
     const showButton = () => {
         if(window.innerWidth <= 960){
@@ -19,17 +23,22 @@ function Navbar() {
             setButton(true)
         }
     };
-/*
-    const verrifyAuthToken = () => {
+
+    var verrifyAuthToken = () => {
 		const token = localStorage.getItem('token');
 		var decodedToken = jwt.decode(token, {complete: true});
 		var dateNow = new Date();
 	
 		return decodedToken.payload.exp > (dateNow.getTime() / 1000)
 	}
-*/
+
     useEffect(() => {
         showButton();
+        if(verrifyAuthToken === true)
+            logInState = 1;
+        else
+            logInState = 0;
+    
     }, []);
 
     window.addEventListener('resize', showButton);
@@ -62,11 +71,11 @@ function Navbar() {
                         </li>
                         <li>
                             <Link to ='/login' className = 'nav-links-mobile' onClick={closeMobileMenu}>
-                                Log In
+                                {state[logInState]}
                             </Link>
                         </li>
                     </ul>
-                    {button && <Button linkTo="/login" buttonStyle='btn--outline'>Log In</Button>}
+                    {button && <Button linkTo="/login" buttonStyle='btn--outline'>{state[logInState]}</Button>}
                 </div>
             </nav>
         </>
