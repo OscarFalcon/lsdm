@@ -121,7 +121,7 @@ class ImageGalleryContainer extends Component {
 		return (
 			<div>
 				{ this.renderRedirect() }
-				<ImageGallery onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
+				<ImageGallery title="My Images" onDeleteConfirmed={this.onDeleteConfirmed} imageData={this.state.imageData}/>
 				<Alert severity="error" style={{visibility : `${ this.state.errorVisibility }`, position:'fixed', bottom:'20px'}}>
   		 			<AlertTitle>Error in deleting image</AlertTitle>
 						Please try again later.

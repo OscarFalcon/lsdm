@@ -8,10 +8,11 @@ import SignUpContainer from './containers/SignUpContainer';
 import LogInContainer from './containers/LogInContainer';
 import ImageGalleryContainer from './containers/ImageGalleryContainer'
 import UploadContainer from './containers/UploadContainer';
+import DuplicateImageGalleryContainer from './containers/DuplicateImageGalleryContainer'
 
 function App() {
   return (
-    <div>
+    <>
       <Router>
         <Navbar />
           <Switch>
@@ -20,10 +21,11 @@ function App() {
             <Route path = '/signup' exact component = {SignUpContainer}/>
             <Route path = '/login' exact component = {LogInContainer} />
             <Route path = '/images' exact component = {ImageGalleryContainer} />
+            <Route path = '/duplicates' exact component = {DuplicateImageGalleryContainer} />
           </Switch>
           <Footer />
       </Router>
-    </div>
+    </>
   );
 }
 
