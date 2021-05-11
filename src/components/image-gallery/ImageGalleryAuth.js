@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 import jwt from 'jsonwebtoken'
 import ImageGallery from './ImageGallery';
+import ImageGalleryContainer from '../../containers/ImageGalleryContainer';
 
 
 class ImageGalleryAuth extends Component {
@@ -42,7 +43,7 @@ class ImageGalleryAuth extends Component {
  		return (
  			<div>
 				{ this.renderRedirect() }
-				<ImageGallery/> 
+				<ImageGalleryContainer/> 
 			</div>
 		)};
 }
