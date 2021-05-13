@@ -34,12 +34,13 @@ class ImageGalleryContainer extends Component {
 		
 	async deleteImage(image){
 		try{ 
-			const response =  await axios.delete(config.service + '/images/' + image.ref, {
+			const response =  await axios.delete(config.service + image.ref, {
 			headers: {
 				'Authorization': localStorage.getItem('token')
 			}});
 			console.log(response);
 			return true;
+			
 		}
 		catch (err){
 			return false;
